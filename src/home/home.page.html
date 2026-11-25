@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+        <ion-title>Profile Card</ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+    <!-- Exercise 1 and 2: my profile -->
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>{{ me().name }}</ion-card-title>
+            <ion-card-subtitle>{{ me().section }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            @for (skill of me().skills; track skill) {
+            <ion-chip color="primary">{{ skill }}</ion-chip>
+            } @empty {
+            <p>No skills yet</p>
+            }
+            <p class="count">Skills: {{ skillCount() }}</p>
+            <ion-button expand="block" [disabled]="allAdded()" (click)="addSkill()">Add a skill</ion-button>
+        </ion-card-content>
+    </ion-card>
+    <!-- Exercise 3: class roster -->
+    <ion-list>
+        <ion-list-header>
+            <ion-label>Class roster</ion-label>
+        </ion-list-header>
+        @for (s of students(); track s.id) {
+        <ion-item button="true" (click)="select(s)">
+            <ion-label>
+                <h2>{{ s.name }}</h2>
+                <p>{{ s.section }}</p>
+            </ion-label>
+            <ion-note slot="end">{{ s.skills.length }}
+                {{ s.skills.length === 1 ? 'skill' : 'skills' }}</ion-note>
+        </ion-item>
+        }
+    </ion-list>
+    <p class="count">BSIT-3A: {{ count3A() }} · BSIT-3B: {{ count3B() }}</p>
+    @if (selected(); as s) {
+    <ion-card>
+        <ion-card-header>
+            <ion-card-title>{{ s.name }}</ion-card-title>
+            <ion-card-subtitle>{{ s.section }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            @for (skill of s.skills; track skill) {
+            <ion-chip>{{ skill }}</ion-chip>
+            } @empty {
+            <p>No skills yet</p>
+            }
+        </ion-card-content>
+    </ion-card>
+    } @else {
+    <p class="hint">Tap a student to see their card.</p>
+    }
+</ion-content>
