@@ -1,6 +1,5 @@
 import {Component, computed, signal} from '@angular/core';
-import {
-    IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonContent, IonHeader, IonItem, IonLabel, IonList, IonListHeader, IonNote, IonTitle,
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonChip, IonContent, IonHeader, IonItem, IonLabel, IonList, IonListHeader, IonNote, IonTitle,
     IonToolbar } from '@ionic/angular';
 
 import type {Student} from '../app/models/student';

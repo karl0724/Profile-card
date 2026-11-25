@@ -4,7 +4,6 @@
     </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-    <!-- Exercise 1 and 2: my profile -->
     <ion-card color="light">
         <ion-card-header>
             <ion-card-title>{{ me().name }}</ion-card-title>
@@ -16,7 +15,7 @@
                 {{ skill }}
             </ion-chip>
             }@empty {
-            <p>No skills added yet.</p>
+                <p>No skills added yet.</p>
             }
             <p class="count"> Skills: {{ skillCount() }} </p>
             <ion-button expand="block" [disabled]="allAdded()" (click)="addSkill()">
@@ -55,7 +54,7 @@
                     {{ skill }}
                 </ion-chip>
                 }@empty {
-                <p>No skills added yet.</p>
+                    <p>No skills added yet.</p>
                 }
             </ion-card-content>
         </ion-card>
