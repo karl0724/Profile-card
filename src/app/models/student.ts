@@ -2,6 +2,6 @@ export interface Student {
   id: number;
   name: string;
   section: string;
-  skills: string[];
+  mySkills: string[];
   email?: string;
 }

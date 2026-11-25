@@ -11,7 +11,7 @@
             <ion-card-subtitle>{{ me().section }}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-            @for (skill of me().skills; track skill) {
+            @for (skill of me().mySkills; track skill) {
             <ion-chip color="primary">
                 {{ skill }}
             </ion-chip>
@@ -19,9 +19,47 @@
             <p>No skills added yet.</p>
             }
             <p class="count"> Skills: {{ skillCount() }} </p>
-            <ion-button expand="block" color="primary" onClick={addSkill} disabled={allAdded()}>
+            <ion-button expand="block" [disabled]="allAdded()" (click)="addSkill()">
                 Add Skill
             </ion-button>
         </ion-card-content>
     </ion-card>
+    <ion-list>
+        <ion-list-header>
+            <ion-label>Class Roster</ion-label>
+        </ion-list-header>
+        @for (st of students(); track st.id) {
+            <ion-item button="true" (click)="select(st)">
+                <ion-label>
+                    <h2>{{ st.name }}</h2>
+                    <p>{{ st.section }}</p>
+                </ion-label>
+                <ion-note slot="end">
+                    {{ st.mySkills.length }}
+                    {{ st.mySkills.length === 1 ? 'skill' : 'skills' }}
+                </ion-note>
+            </ion-item>
+        }
+    </ion-list>
+    <p class="count">BSIT-3A: {{student3A()}} BSIT-3B: {{student3B()}}</p>
+
+    @if (selected(); as s ){
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>{{ s.name }}</ion-card-title>
+                <ion-card-subtitle>{{ s.section }}</ion-card-subtitle>
+            </ion-card-header>
+            <ion-card-content>
+                @for (skill of s.mySkills; track skill) {
+                <ion-chip color="primary">
+                    {{ skill }}
+                </ion-chip>
+                }@empty {
+                <p>No skills added yet.</p>
+                }
+            </ion-card-content>
+        </ion-card>
+    }@else {
+        <p class="hint">Click a student to see their details.</p>
+    }
 </ion-content>
